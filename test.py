@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 import string
 from covfefe import covfefe
-
+from goose import goose
 if __name__ == "__main__":
   cov = covfefe()
-  text = cov.inputtext()
-  words = cov.getdictwords()
-  for word in words:
-    if word in text and len(word) > 1:
-      print(word)
+  duck = goose()
+  text = duck.textinput()
+  key = duck.keyentry()
+  code = duck.parsetext(text,key)
+  

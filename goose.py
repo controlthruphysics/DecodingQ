@@ -15,6 +15,8 @@ class goose(): #this defines a class
 
   def keyentry(self): # lets you input the key, can be letter or number
     oldkey = input('\nEnter key, letter or number: \n').lower() # converts to lower case
+    try: oldkey = int(oldkey)
+    except: pass
     if isinstance(oldkey, str): # if you put in a string...
       key = ord(oldkey)-96  # convert to 1-26 number from ascii
     elif isinstance(oldkey,int): # if key entered is integer do this
@@ -61,7 +63,7 @@ class goose(): #this defines a class
     lines = [line.rstrip('\n').lower() for line in open('words')]
     return lines
 
-  def findwords(self,text):
+  def findwords(self,text): 
     words = self.getdictwords()
     print("\nPossible words:")
     for word in words:
