@@ -70,11 +70,19 @@ class goose(): #this defines a class
       if word in text and len(word)>1:
         print(word)   
 
+  def tryagain(self):
+    again = input("\nEnter q to quit. Press any key to try again\n")
+    return again
+
 if __name__ == "__main__": # when running the computer starts here
-  duck = goose() # duck is an instantiation of my class goose, means start using this class
-  duck.displayletters() # call function to display letters
-  duck.displaynums() # call function to display numbers
-  mytext = duck.textinput() # call function to input text
-  mykey = duck.keyentry() # call function to enter key
-  code = duck.parsetext(mytext,mykey) # call function to parse text using key
-  duck.findwords(code)
+  while True:
+    duck = goose() # duck is an instantiation of my class goose, means start using this class
+    duck.displayletters() # call function to display letters
+    duck.displaynums() # call function to display numbers
+    mytext = duck.textinput() # call function to input text
+    mykey = duck.keyentry() # call function to enter key
+    code = duck.parsetext(mytext,mykey) # call function to parse text using key
+    duck.findwords(code)
+    again = duck.tryagain()
+    if again == "q": break
+    else: continue

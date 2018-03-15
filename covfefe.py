@@ -119,14 +119,22 @@ class covfefe():
       if word in text and len(word)>1:
         print(word)   
 
+  def tryagain(self):
+    again = input("\nEnter q to quit. Press any key to try again:\n")
+    return again
+
 if __name__ == "__main__":
-  cov = covfefe()
-  text = cov.inputtext()
-  key = cov.inputkey()
-  cov.displayletters()
-  cov.displaynums()
-  output = cov.modtext(text)
-  newdict = cov.buildkeydict(text,key)
-  code = cov.getsum(output,newdict).replace(" ","")
-  print('\n')
-  cov.findwords(code)
+  while True:
+    cov = covfefe()
+    text = cov.inputtext()
+    key = cov.inputkey()
+    cov.displayletters()
+    cov.displaynums()
+    output = cov.modtext(text)
+    newdict = cov.buildkeydict(text,key)
+    code = cov.getsum(output,newdict).replace(" ","")
+    print('\n')
+    cov.findwords(code)
+    again = cov.tryagain()
+    if again == "q": break
+    else: continue

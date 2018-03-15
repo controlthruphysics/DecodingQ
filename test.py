@@ -9,4 +9,4 @@ if __name__ == "__main__":
   text = duck.textinput()
   key = duck.keyentry()
   code = duck.parsetext(text,key)
-  
+  for word in code: 
