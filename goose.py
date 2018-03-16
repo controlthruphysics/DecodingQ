@@ -74,15 +74,35 @@ class goose(): #this defines a class
     again = input("\nEnter q to quit. Press any key to try again\n")
     return again
 
+  def newinputprompt(self):
+    prompt = input("Enter y for new input. Press any key to try again with a new key\n").lower()
+    if prompt == 'y': y=0
+    else: y=1
+    return y
+
+  def matchwords(self,code):
+    print("\nPossible matches: ")
+    for x in code:
+      regex = "^(?:" + "|".join("{}()".format(c) for c in x) + "){{{}}}".format(len(x)) + "".join("\\{}".format(i+1) for i in range(len(x))) + "$"
+      for line in open('words'):
+        for match in re.finditer(regex,line):
+          print(match.group())
+
 if __name__ == "__main__": # when running the computer starts here
+  duck = goose() # duck is an instantiation of my class goose, means start using this class
+  duck.displayletters() # call function to display letters
+  duck.displaynums() # call function to display numbers
+  y=0
   while True:
-    duck = goose() # duck is an instantiation of my class goose, means start using this class
-    duck.displayletters() # call function to display letters
-    duck.displaynums() # call function to display numbers
-    mytext = duck.textinput() # call function to input text
-    mykey = duck.keyentry() # call function to enter key
-    code = duck.parsetext(mytext,mykey) # call function to parse text using key
-    duck.findwords(code)
+    if y == 0:
+      mytext = duck.textinput() # call function to input text
+      mykey = duck.keyentry() # call function to enter key
+    else: mykey = duck.keyentry() 
+    mycode = duck.parsetext(mytext,mykey).lower().split() # call function to parse text using key
+    try:
+      duck.matchwords(mycode)
+    except KeyboardInterrupt: pass
     again = duck.tryagain()
     if again == "q": break
-    else: continue
+    else: y = duck.newinputprompt()
+    continue
